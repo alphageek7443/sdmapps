@@ -1,12 +1,12 @@
 
 ### url value inside JSON node from service key.
-@url = https://sap-pa.authentication.eu10.hana.ondemand.com
+@url = <url>
 
 ### clientid value inside JSON node from service key.
-@clientid = sb-cae4dc27-29a4-4d7b-9d88-737bd6789359!b140177|sdm-di-SDM_DI_PROD-prod!b41064
+@clientid = <clientid>
 
 ### clientsecret value inside JSON node from service key.
-@clientsecret = /lLgbMJm+upNAkuj/RTjEz/5BKU=
+@clientsecret = <clientsecret>
 
 ### get Access Token
 # @name getAccessToken
@@ -37,7 +37,7 @@ Content-Type: application/json
 
 
 ### Repository ID value inside JSON from createRepository result 
-@repositoryId = 7cac5ffa-63f7-43f9-8b20-52d78f494f09  
+@repositoryId = <repositoryId> 
 
 ### sdm ecmservice uri value inside JSON from service key
 @uri = https://api-sdm-di.cfapps.eu10.hana.ondemand.com
@@ -81,7 +81,7 @@ Content-Type: application/pdf
 
 ### Create Folder 
 # createFolder
-POST {{uri}}/browser/7cac5ffa-63f7-43f9-8b20-52d78f494f09/root HTTP/1.1
+POST {{uri}}/browser/{{repositoryId}}/root HTTP/1.1
 Accept: application/json
 DataServiceVersion: 2.0
 Authorization: Bearer {{token}}
