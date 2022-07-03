@@ -1,0 +1,53 @@
+What Is Document Management Service
+Build API and UI based document management capabilities for your business apps. Organize your enterprise content with the ready-to-use web application.
+
+Document Management Service, Integration Option lets you build document management capabilities for your business applications using the integration component or the easy-to-use, reusable UI component.
+
+Document Management Service, Application Option is a standalone, ready-to-use web application that provides document management capabilities for your enterprise content.
+
+Environment
+This service runs in the Cloud Foundry environment.
+
+Features of Document Management, integration option
+Achieve more with SAP storage
+Use Document Management Service, Repository Option to securely store and manage your business documents and attachments.
+
+Connect to your business storage
+Bring your choice of CMIS-compliant, on-premise or cloud repository to connect with Document Management Service and leverage the capabilities of the service.
+
+Build document management capabilities
+Leverage the APIs to build a customized document management layer on your on-premise or cloud applications.
+
+Embed with your business applications
+Embed an easy-to-use, UI5-based, reusable component into your application for document management scenarios.
+
+Manage enterprise content
+Organize your enterprise content with the document management capabilities like file and folder hierarchy, versioning, status management, etc.
+
+Features of Document Management, application option
+Achieve more with SAP storage
+Use Document Management Service, Repository Option to securely store and manage your business documents and attachments.
+
+Connect to your business storage
+Bring your choice of CMIS-compliant, on-premise or cloud repository to connect with Document Management Service and leverage the capabilities of the application.
+
+Manage files and folders
+Create, edit, download, and delete files and folders. Navigate the file and folder hierarchy using breadcrumbs.
+
+View your documents
+View your images, PDFs, and vector graphics using the built-in viewers. Support for other file extensions provided via an option to download the documents.
+
+Restructure your document hierarchy
+Move and copy your folders and documents to other folders within your repository.
+
+Manage metadata
+View and edit the basic document attributes and folder properties supported by your repository.
+
+Personalize the user interface
+Customize your document list by sorting based on the attributes of the documents.
+
+Manage document versions and status
+Create one or more versions for the base version of a file. Manage the workflow of a document to avoid unintentional changes.
+
+Related Information
+Feature Scope Description

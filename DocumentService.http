@@ -1,0 +1,119 @@
+
+### url value inside JSON node from service key.
+@url = https://sap-pa.authentication.eu10.hana.ondemand.com
+
+### clientid value inside JSON node from service key.
+@clientid = sb-cae4dc27-29a4-4d7b-9d88-737bd6789359!b140177|sdm-di-SDM_DI_PROD-prod!b41064
+
+### clientsecret value inside JSON node from service key.
+@clientsecret = /lLgbMJm+upNAkuj/RTjEz/5BKU=
+
+### get Access Token
+# @name getAccessToken
+GET  {{url}}/oauth/token?grant_type=client_credentials HTTP/1.1
+Authorization: Basic {{clientid}}:{{clientsecret}} 
+
+
+## access token 
+@token = {{ getAccessToken.response.body.access_token }}
+
+### create Repository
+# @name createRepository
+POST {{uri}}/rest/v2/repositories HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "repository": {
+        "displayName": "ZDOC-INT",
+        "description": "ZDOC-INT Internal repository",
+        "repositoryType": "internal",
+        "isVersionEnabled":"true",
+        "isVirusScanEnabled":"true",
+        "skipVirusScanForLargeFile": "false",
+        "hashAlgorithms":"SHA-256"
+  }
+}
+
+
+### Repository ID value inside JSON from createRepository result 
+@repositoryId = 7cac5ffa-63f7-43f9-8b20-52d78f494f09  
+
+### sdm ecmservice uri value inside JSON from service key
+@uri = https://api-sdm-di.cfapps.eu10.hana.ondemand.com
+
+### Upload Document 
+# uploadDocument
+POST {{uri}}/browser/{{repositoryId}}/root HTTP/1.1
+Accept: application/json
+DataServiceVersion: 2.0
+Authorization: Bearer {{token}}
+Content-Length: 726
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="cmisaction"
+
+createDocument
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="propertyId[0]"
+
+cmis:name
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="propertyValue[0]"
+
+invoice-3.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="propertyId[1]"
+
+cmis:objectTypeId
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="propertyValue[1]"
+
+cmis:document
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="media"; filename="sample-invoice-3.pdf"
+Content-Type: application/pdf
+
+< .\docs\sample-invoice-3.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+### Create Folder 
+# createFolder
+POST {{uri}}/browser/7cac5ffa-63f7-43f9-8b20-52d78f494f09/root HTTP/1.1
+Accept: application/json
+DataServiceVersion: 2.0
+Authorization: Bearer {{token}}
+Content-Length: 726
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="cmisaction"
+
+createFolder
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="propertyId[0]"
+
+cmis:name
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="propertyValue[0]"
+
+documents
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="propertyId[1]"
+
+cmis:objectTypeId
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="propertyValue[1]"
+
+cmis:folder
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+### Get All Repositories
+# getRepositories
+GET {{uri}}/browser
+Authorization: Bearer {{token}}
+
+
