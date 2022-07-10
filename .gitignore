@@ -1,1 +1,5 @@
 DocumentServicepersonal.http
+node_modules
+package-lock.json
+default-key.json
+.DS_Store
