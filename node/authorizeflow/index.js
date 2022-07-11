@@ -12,6 +12,7 @@ const oauth = new OAuth(clientid,clientsecret,url);
 const port = process.env.PORT || 3004;
 
 app.use(oauth.getMiddleware())
+app.use(express.static("web"));
 
 app.get('/token', async(req,res) => {
     var token = await oauth.getToken(req)
