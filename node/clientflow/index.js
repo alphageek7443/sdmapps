@@ -10,6 +10,8 @@ const app = express();
 const oauth = new OAuth(clientid,clientsecret,url);
 const port = process.env.PORT || 3004;
 
+app.use(express.static("web"));
+
 app.get('/token', async(req,res) => {
     var token = await oauth.getToken()
     res.send(token)
