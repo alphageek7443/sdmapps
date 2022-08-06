@@ -1,0 +1,45 @@
+---
+_schema-version: '3.1'
+ID: sdm-service
+version: 1.0.0-SNAPSHOT
+description: "sdm-service application"
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx -p @sap/cds-dk cds build --production
+
+modules:
+  - name: sdm-service-srv
+    type: java
+    path: srv
+    parameters:
+      buildpack: java_buildpack
+    properties:
+      SPRING_PROFILES_ACTIVE: cloud
+    build-parameters:
+      builder: custom
+      commands:
+        - mvn clean package -DskipTests=true
+      build-result: target/*-exec.jar
+    provides:
+      - name: srv_api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          url: '${default-url}'
+    requires:
+        - name: sdmsrv
+        - name: sdmxsuaa
+resources:
+ - name: sdmxsuaa
+   type: org.cloudfoundry.managed-service
+   parameters:
+     service: xsuaa
+     service-plan: application
+     path: ./xs-security.json
+ - name: sdmsrv
+   type: org.cloudfoundry.managed-service
+   parameters:
+     service: sdm
+     service-plan: free
